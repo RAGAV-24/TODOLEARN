@@ -25,11 +25,22 @@ const App = () => {
     load();
 
   }
+ const update = (date) => {
+  const newText = window.prompt("Enter new text:");
+  if (newText) {
+    setValues(values.map(item =>
+      item.date === date ? { ...item, Text: newText } : item
+    ));
+  }
+
+     load();
+
+  }
   return (
     <div>
       <Input addc={add} />
 
-    <List func={load} remove={remove} />
+    <List func={load} remove={remove} update={update} />
     </div>
   )
 }
