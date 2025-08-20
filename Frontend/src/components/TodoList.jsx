@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
-const TodoList = ({ func }) => {
+const TodoList = ({ func,remove }) => {
   const [values, setValue] = useState([]);
 
   useEffect(() => {
-    const r = func();
-    console.log(r);
-    setValue(r);
-  }, [func]);
+  const r = func();
+  console.log(r);
+  setValue(r);
+}, [func]);
+
 
   return (
     <div className="bg-black text-white font-bold">
@@ -16,6 +17,7 @@ const TodoList = ({ func }) => {
           <tr>
             <th>Date</th>
             <th>Text</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -23,6 +25,7 @@ const TodoList = ({ func }) => {
             <tr key={i}>
               <td>{e.date}</td>
               <td>{e.Text}</td>
+              <td><div className="bg-yellow-200 text-black"><button onClick={()=>remove(e.date)}>Delete</button></div></td>
             </tr>
           ))}
         </tbody>

@@ -20,11 +20,16 @@ const App = () => {
     console.log("gg");
     return values;
   }
+  const remove=(e)=>{
+    setValues(values.filter((k)=>(k.date!=e)))
+    load();
+
+  }
   return (
     <div>
       <Input addc={add} />
 
-    <List func={load} />
+    <List func={load} remove={remove} />
     </div>
   )
 }
