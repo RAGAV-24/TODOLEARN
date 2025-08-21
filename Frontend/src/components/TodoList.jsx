@@ -34,7 +34,7 @@ const TodoList = ({ func, remove, update }) => {
                   key={i}
                   className="border-b border-gray-700 hover:bg-gray-600 transition"
                 >
-                  <td className="p-3 text-sm text-gray-300">{new Date(e.date).toLocaleString()}</td>
+                  <td className="p-3 text-sm text-gray-300">{new Date(Number(e.date)).toLocaleString()}</td>
                   <td className="p-3 text-base">{e.Text}</td>
                   <td className="p-3 text-center">
                     <button

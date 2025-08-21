@@ -1,46 +1,19 @@
 import React from 'react'
-import Input from  "./components/TodoInput"
-import { useState,useEffect } from 'react';
-import List from "./components/TodoList"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Login from "./Authentication/Login"
+import Register from "./Authentication/Register"
+import Todo from "./components/Todo"
+
 const App = () => {
-  const[values,setValues]=useState([]);
-
-  const add=(e)=>
-  {
-    load();
-    const r={date:Date.now(),Text:e}
-  setValues([...values,r]);
-  // console.log(values);
-  }
-   useEffect(() => {
-
-    console.log("hi", values);
-  }, [values]);
-  const load=()=>{
-    console.log("gg");
-    return values;
-  }
-  const remove=(e)=>{
-    setValues(values.filter((k)=>(k.date!=e)))
-    load();
-
-  }
- const update = (date) => {
-  const newText = window.prompt("Enter new text:");
-  if (newText) {
-    setValues(values.map(item =>
-      item.date === date ? { ...item, Text: newText } : item
-    ));
-  }
-
-     load();
-
-  }
   return (
     <div>
-      <Input addc={add} />
-
-    <List func={load} remove={remove} update={update} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/todo" element={<Todo />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 }

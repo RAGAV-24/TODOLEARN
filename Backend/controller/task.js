@@ -17,6 +17,7 @@ exports.addTask=async (req,res)=>{
   res.status(500).json({msg:err});
  }
 }
+
 exports.fetchTask=async(req,res)=>{
   const {date}=req.body;
   try{
@@ -45,5 +46,33 @@ exports.updateTask=async (req,res)=>{
   catch(err)
   {
     res.status(404).json({msg:err})
+  }
+}
+exports.fetchAllTask= async(req,res)=>{
+  try{
+   const task=await model.find();
+   if(!task)
+   {
+    res.status(201).json({msg:"there is no task to fetch"});
+   }
+   res.status(200).json(task);
+  }
+  catch(err)
+  {
+    console.log(err);
+    res.status(500).json({msg:err});
+  }
+}
+exports.deletetask=async (req,res)=>{
+  try {
+    console.log(req);
+    const {date}=req.body;
+    await model.findOneAndDelete({date})
+    res.status(200).json({msg:"Task Successfully removed"});
+
+  } catch (error) {
+    console.log("Error at the delete api");
+    console.log(error);
+   res.status(500).json({msg:error})
   }
 }

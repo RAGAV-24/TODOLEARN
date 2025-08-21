@@ -8,6 +8,7 @@ const registeroutes=require("./routes/register")
 const taskroutes=require("./routes/task")
 app.use(cors());
 app.use(body.json());
+app.use(express.urlencoded({ extended: true }));
 db();
 app.use("/api/auth",registeroutes)
 app.use("/api/task",taskroutes)
