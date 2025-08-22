@@ -9,10 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const handleClick = async () => {
   try {
-    const response = await axios.get("http://localhost:3000/api/auth/login", {
-      email,
-      password,
-    });
+    const response = await axios.post("http://localhost:3000/api/auth/login", {email,password});
 
     console.log("User login successful:", response.data);
     navigate("/todo");

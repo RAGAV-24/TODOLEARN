@@ -1,8 +1,9 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const User = require("../model/Login/register"); // make sure this is your User model
+const User = require("../model/Login/register");
 
 exports.LoginUser = async (req, res) => {
+  console.log(req);
   const { email, password } = req.body;
   console.log("Login attempt:", email, password);
 
@@ -12,7 +13,7 @@ exports.LoginUser = async (req, res) => {
       return res.status(400).json({ message: "No user with this login credential" });
     }
 
-    const isMatch = await bcrypt.compare(password, user.password); // ✅ await here
+    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid Credentials" });
     }
